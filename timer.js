@@ -11,18 +11,18 @@ function startCountdown(seconds) {
   let counter = seconds;
 
   const interval = setInterval(() => {
-    console.log(counter); 
+    document.body.innerHTML = "Remaining time: " + counter; 
     counter -= 1; 
     
 
     if(Date.now() >= startTime + (seconds * 1000)) {
       clearInterval(interval);
-      console.log("The countdown has ended!");
+      document.body.innerHTML = "The countdown has ended!";
     }
   }, 1000);
 }
 
 
-startCountdown(5);
+startCountdown(25);
 
 
