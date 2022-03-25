@@ -36,6 +36,10 @@ function toFormattedTime( totalSeconds ) {
 }
 
 function startCountdown( seconds ) {
+  // Update the time display as soon as the timer's started,
+  // so we can see the initial time
+  getTimeDisplay().innerHTML = toFormattedTime( seconds );
+
   const interval = setInterval( ( startTime, seconds ) => {
     // If the given number of seconds has elapsed,
     // show the 'countdown ended' message and nothing more
