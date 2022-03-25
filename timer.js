@@ -18,6 +18,14 @@ function getEndedDisplay() {
   return document.querySelector( '.timer__ended' );
 }
 
+function show( element ) {
+  element.style.display = 'initial';
+}
+
+function hide( element ) {
+  element.style.display = 'none';
+}
+
 function startCountdown(seconds) {
   let startTime = Date.now() //
   let counter = seconds;
@@ -29,8 +37,8 @@ function startCountdown(seconds) {
     if(Date.now() >= startTime + (seconds * 1000)) {
       clearInterval(interval);
 
-      getCountdown().style.display = 'none';
-      getEndedDisplay().style.display = 'initial';
+      hide( getCountdown() );
+      show( getEndedDisplay() );
     }
   }, 1000);
 }
