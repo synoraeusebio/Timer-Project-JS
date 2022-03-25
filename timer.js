@@ -11,18 +11,23 @@ function startCountdown(seconds) {
   let counter = seconds;
 
   const interval = setInterval(() => {
-    document.body.innerHTML = "Remaining time: " + counter; 
+    const timeDisplayElement = document.querySelector( '.timer__time-display' );
     counter -= 1; 
-    
+    timeDisplayElement.innerHTML = counter; 
 
     if(Date.now() >= startTime + (seconds * 1000)) {
       clearInterval(interval);
-      document.body.innerHTML = "The countdown has ended!";
+
+      const countdownElement = document.querySelector( '.timer__countdown' );
+      countdownElement.style.display = 'none';
+
+      const endedElement = document.querySelector( '.timer__ended' );
+      endedElement.style.display = 'initial';
     }
   }, 1000);
 }
 
 
-startCountdown(25);
+startCountdown(3);
 
 
