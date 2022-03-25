@@ -36,8 +36,7 @@ function toFormattedTime( totalSeconds ) {
 }
 
 function startCountdown(seconds) {
-  let startTime = Date.now() //
-  let counter = seconds;
+  let startTime = Date.now();
 
   const interval = setInterval(() => {
     // If the given number of seconds has elapsed,
@@ -52,7 +51,9 @@ function startCountdown(seconds) {
       return;
     }
 
-    counter -= 1; 
-    getTimeDisplay().innerHTML = toFormattedTime( counter ); 
+    const elapsedSeconds = Math.floor( ( Date.now() - startTime ) / 1000 );
+    const remainingSeconds = seconds - elapsedSeconds;
+
+    getTimeDisplay().innerHTML = toFormattedTime( remainingSeconds ); 
   }, 1000);
 }
