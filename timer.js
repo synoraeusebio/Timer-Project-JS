@@ -40,14 +40,19 @@ function startCountdown(seconds) {
   let counter = seconds;
 
   const interval = setInterval(() => {
-    counter -= 1; 
-    getTimeDisplay().innerHTML = toFormattedTime( counter ); 
-
-    if(Date.now() >= startTime + (seconds * 1000)) {
-      clearInterval(interval);
+    // If the given number of seconds has elapsed,
+    // show the 'countdown ended' message and nothing more
+    const endTime = startTime + seconds * 1000;
+    if ( Date.now() >= endTime ) {
+      clearInterval( interval );
 
       hide( getCountdown() );
       show( getEndedDisplay() );
+
+      return;
     }
+
+    counter -= 1; 
+    getTimeDisplay().innerHTML = toFormattedTime( counter ); 
   }, 1000);
 }
