@@ -6,23 +6,57 @@ timer update:
 adding the counter back so we see just the "counter" counting down instead of a long time string
 */
 
-function startCountdown(seconds) {
-  let startTime = Date.now() //
-  let counter = seconds;
-
-  const interval = setInterval(() => {
-    document.body.innerHTML = "Remaining time: " + counter; 
-    counter -= 1; 
-    
-
-    if(Date.now() >= startTime + (seconds * 1000)) {
-      clearInterval(interval);
-      document.body.innerHTML = "The countdown has ended!";
-    }
-  }, 1000);
+function getCountdown() {
+  return document.querySelector( '.timer__countdown' );
 }
 
+function getTimeDisplay() {
+  return document.querySelector( '.timer__time-display' );
+}
 
-startCountdown(25);
+function getEndedDisplay() {
+  return document.querySelector( '.timer__ended' );
+}
 
+function show( element ) {
+  element.style.display = 'initial';
+}
 
+function hide( element ) {
+  element.style.display = 'none';
+}
+
+function toFormattedTime( totalSeconds ) {
+  const minutes = Math.floor( totalSeconds / 60 );
+  const seconds = totalSeconds % 60;
+
+  const format = ( num ) => String( num ).padStart( 2, '0' );
+
+  return `${ format( minutes ) }:${ format( seconds ) }`;
+}
+
+function startCountdown( seconds ) {
+  // Update the time display as soon as the timer's started,
+  // so we can see the initial time
+  getTimeDisplay().innerHTML = toFormattedTime( seconds );
+
+  const interval = setInterval( ( startTime, seconds ) => {
+    // If the given number of seconds has elapsed,
+    // show the 'countdown ended' message and nothing more
+    const endTime = startTime + seconds * 1000;
+
+    const elapsedSeconds = Math.floor( ( Date.now() - startTime ) / 1000 );
+    const remainingSeconds = seconds - elapsedSeconds;
+
+    getTimeDisplay().innerHTML = toFormattedTime( remainingSeconds );
+
+    if ( Date.now() >= endTime ) {
+      clearInterval( interval );
+      getEndedDisplay().innerHTML = 'Ended!';
+    }
+  }, 1000, Date.now(), seconds );
+}
+
+function resetCountdown() {
+  getEndedDisplay().innerHTML = '&nbsp;';
+}
