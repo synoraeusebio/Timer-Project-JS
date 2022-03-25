@@ -44,11 +44,15 @@ function startCountdown( seconds ) {
     const elapsedSeconds = Math.floor( ( Date.now() - startTime ) / 1000 );
     const remainingSeconds = seconds - elapsedSeconds;
 
-    getTimeDisplay().innerHTML = toFormattedTime( remainingSeconds ); 
+    getTimeDisplay().innerHTML = toFormattedTime( remainingSeconds );
 
     if ( Date.now() >= endTime ) {
       clearInterval( interval );
       getEndedDisplay().innerHTML = 'Ended!';
     }
   }, 1000, Date.now(), seconds );
+}
+
+function resetCountdown() {
+  getEndedDisplay().innerHTML = '&nbsp;';
 }
