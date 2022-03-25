@@ -1,16 +1,45 @@
 body {
     background-color: #0080ff;
+    font-family: sans-serif;
 }
- 
-h1 {
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+
+p {
+    margin: 0;
+}
+
+.timer__container {
+    margin: 15px auto;
+    width: 15rem;
+    padding: 15px 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #CCCCFF;
+    
+    font-size: 2.25rem;
+    color: black;
+}
+
+.timer__time-display {
+    display: block;
+    font-family: monospace;
+    font-variant-numeric: tabular-nums;
 }
 
 .timer__ended {
-    display: none;
+    margin-block-end: 15px;
+
+    font-size: 50%;
+    color: red;
 }
 
 .timer__start-button {
     display: block;
+    padding: 5px 15px;
+
+    font-size: 1.5rem;
 }

@@ -40,18 +40,15 @@ function startCountdown( seconds ) {
     // If the given number of seconds has elapsed,
     // show the 'countdown ended' message and nothing more
     const endTime = startTime + seconds * 1000;
-    if ( Date.now() >= endTime ) {
-      clearInterval( interval );
-
-      hide( getCountdown() );
-      show( getEndedDisplay() );
-
-      return;
-    }
 
     const elapsedSeconds = Math.floor( ( Date.now() - startTime ) / 1000 );
     const remainingSeconds = seconds - elapsedSeconds;
 
     getTimeDisplay().innerHTML = toFormattedTime( remainingSeconds ); 
+
+    if ( Date.now() >= endTime ) {
+      clearInterval( interval );
+      getEndedDisplay().innerHTML = 'Ended!';
+    }
   }, 1000, Date.now(), seconds );
 }
