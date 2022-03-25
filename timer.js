@@ -26,13 +26,22 @@ function hide( element ) {
   element.style.display = 'none';
 }
 
+function toFormattedTime( totalSeconds ) {
+  const minutes = Math.floor( totalSeconds / 60 );
+  const seconds = totalSeconds % 60;
+
+  const format = ( num ) => String( num ).padStart( 2, '0' );
+
+  return `${ format( minutes ) }:${ format( seconds ) }`;
+}
+
 function startCountdown(seconds) {
   let startTime = Date.now() //
   let counter = seconds;
 
   const interval = setInterval(() => {
     counter -= 1; 
-    getTimeDisplay().innerHTML = counter; 
+    getTimeDisplay().innerHTML = toFormattedTime( counter ); 
 
     if(Date.now() >= startTime + (seconds * 1000)) {
       clearInterval(interval);
