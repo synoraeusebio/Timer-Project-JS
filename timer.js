@@ -35,10 +35,8 @@ function toFormattedTime( totalSeconds ) {
   return `${ format( minutes ) }:${ format( seconds ) }`;
 }
 
-function startCountdown(seconds) {
-  let startTime = Date.now();
-
-  const interval = setInterval(() => {
+function startCountdown( seconds ) {
+  const interval = setInterval( ( startTime, seconds ) => {
     // If the given number of seconds has elapsed,
     // show the 'countdown ended' message and nothing more
     const endTime = startTime + seconds * 1000;
@@ -55,5 +53,5 @@ function startCountdown(seconds) {
     const remainingSeconds = seconds - elapsedSeconds;
 
     getTimeDisplay().innerHTML = toFormattedTime( remainingSeconds ); 
-  }, 1000);
+  }, 1000, Date.now(), seconds );
 }
