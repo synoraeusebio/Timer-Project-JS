@@ -10,3 +10,7 @@ h1 {
 .timer__ended {
     display: none;
 }
+
+.timer__start-button {
+    display: block;
+}

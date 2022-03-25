@@ -26,8 +26,3 @@ function startCountdown(seconds) {
     }
   }, 1000);
 }
-
-
-startCountdown(3);
-
-
